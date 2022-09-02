@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         checkLeapYear(2023);
         checkOSCompatibility(0,2022);
-        getDeliveryTime(65);
+        System.out.println("Потребуется дней: " + getDeliveryTime(21));
     }
 
     /*### Задание 1
@@ -24,7 +24,9 @@ public class Main {
     public static void checkLeapYear(int year) {
         if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)){
             System.out.println(year + " год является високосным");
-        } else System.out.println(year + " год не является високосным");
+        } else {
+            System.out.println(year + " год не является високосным");
+        }
     }
 
     /*
@@ -48,7 +50,9 @@ public class Main {
             System.out.println("Установите облегченную версию приложения для Android по ссылке");
         } else if (clientOS == 0) {
             System.out.println("Установите обычную версию приложения для iOS по ссылке");
-        } else System.out.println("Установите обычную версию приложения для Android по ссылке");
+        } else {
+            System.out.println("Установите обычную версию приложения для Android по ссылке");
+        }
     }
 
     /*
@@ -78,14 +82,15 @@ public class Main {
     Наша задача — доработать код, а именно написать метод, который на вход принимает дистанцию и
     возвращает итоговое количество дней доставки.
      */
-    public static void getDeliveryTime(int deliveryDistance) {
+    public static int getDeliveryTime(int deliveryDistance) {
         int deliveryTime = 1;
+
         if (deliveryDistance > 20) {
-            deliveryTime++;
+            deliveryTime = (int) Math.round((double)(deliveryDistance) / 40 + 1);
         }
-        if (deliveryDistance > 60){
-            deliveryTime++;
+        if (deliveryDistance <= 0) {
+            return 0;
         }
-        System.out.println("На доставку потребуется дней: " + deliveryTime);
+        return deliveryTime;
     }
 }
